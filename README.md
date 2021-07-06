@@ -3,7 +3,7 @@
 > A Vue.js project
 
 ## Build Setup
-
+刺激战场
 ``` bash
 # install dependencies
 npm install
