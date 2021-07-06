@@ -1,84 +1,15 @@
 <template>
   <div class="hello">
+    <div class="block">
+      <el-carousel trigger="click" height="400px">
+        <el-carousel-item v-for="item in 3" :key="item">
+          <h3>{{ item }}</h3>
+        </el-carousel-item>
+      </el-carousel>
+    </div>
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
     <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
+      <router-link :to="{path:'/login'}"> 去登陆 </router-link>
     </ul>
   </div>
 </template>
@@ -88,7 +19,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: '欢迎进入老人之家'
     }
   }
 }
@@ -99,15 +30,25 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.el-carousel__item h3 {
+
 }
-a {
-  color: #42b983;
+
+.el-carousel__item:nth-child(3n) {
+  background: rgba(38, 50, 56, .6) url(../assets/old1.jpg) no-repeat;
 }
+
+.el-carousel__item:nth-child(3n+1) {
+  background: rgba(38, 50, 56, .6) url(../assets/old2.jpg) no-repeat;
+}
+.el-carousel__item:nth-child(3n+2) {
+  background: rgba(38, 50, 56, .6) url(../assets/old3.jpg) no-repeat;
+}
+
 </style>
