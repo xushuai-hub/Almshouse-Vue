@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path: '/AlmsHouse',
+      name: 'AlmsHouse',
+      meta: {requiresAuth: false},
+      component: () => import("../components/HelloWorld")
     },
     {
       path: '/login',
@@ -22,6 +22,26 @@ export default new Router({
       name: 'register',
       meta: {requiresAuth: false},
       component: () => import("../components/register")
+    },
+    {
+      path: '/MainPage',
+      name: 'MainPage',
+      meta: {requiresAuth: true},
+      component: () => import("../components/MainPage"),
+      children: [
+        {
+          path: '/MainPage/Camera',
+          name: 'Camera',
+          meta: {requiresAuth: false},
+          component: () => import("../components/Camera")
+        },
+        {
+          path: '/MainPage/Settings',
+          name: 'Settings',
+          meta: {requiresAuth: false},
+          component: () => import("../components/Settings")
+        },
+      ]
     }
   ]
 })
