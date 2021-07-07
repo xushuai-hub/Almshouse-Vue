@@ -42,6 +42,12 @@ export default new Router({
           component: () => import("../components/Settings")
         },
       ]
+    },
+    {
+      path: '/changemessage',
+      name: 'changemwessage',
+      meta: {requiresAuth: false},
+      component: () => import("../components/ChangeMessage")
     }
   ]
 })
