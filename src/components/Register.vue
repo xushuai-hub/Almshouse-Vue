@@ -2,9 +2,9 @@
   <div class="register-wrapper">
     <div class="register-content">
       <div class="register-main">
-        <router-link to="/login" style="float: right">返回登录</router-link>
-        <h2 class="register-main-title" align="left">注册</h2>
-        <el-form :model="RegisterForm" :rules="RegisterRule" ref="RegisterForm" @keyup.enter.native="login()"
+<!--        <router-link to="/login" style="float: right">返回登录</router-link>-->
+        <h2 class="register-main-title" align="left">修改密码</h2>
+<!--        <el-form :model="RegisterForm" :rules="RegisterRule" ref="RegisterForm" @keyup.enter.native="login()"-->
                  status-icon>
           <el-form-item prop="userName">
             <el-input v-model="RegisterForm.userName" placeholder="帐号"></el-input>
@@ -26,7 +26,6 @@
             <el-button class="register-btn-submit" type="primary" @click="register()">注册</el-button>
           </el-form-item>
 
-        </el-form>
       </div>
     </div>
   </div>

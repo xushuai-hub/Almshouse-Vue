@@ -22,6 +22,13 @@ export default new Router({
       name: 'register',
       meta: {requiresAuth: false},
       component: () => import("../components/register")
+    },
+    {
+      path: '/changemessage',
+      name: 'changemwessage',
+      meta: {requiresAuth: false},
+      component: () => import("../components/ChangeMessage")
     }
+
   ]
 })
