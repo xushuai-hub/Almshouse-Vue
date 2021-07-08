@@ -24,14 +24,6 @@
         ></el-input>
       </el-form-item>
 
-
-
-
-
-      <el-checkbox
-        v-model="checked"
-        class="rememberme"
-      >记住密码</el-checkbox>
       <el-form-item style="width:100%;">
         <el-button type="primary" style="width:100%;" @click="handleSubmit" :loading="logining">登录</el-button>
       </el-form-item>
@@ -45,8 +37,8 @@ export default {
     return {
       logining: false,
       ruleForm2: {
-        username: 'admin',
-        password: '123456',
+        username: '',
+        password: '',
       },
       rules2: {
         username: [{required: true, message: 'please enter your account', trigger: 'blur'}],
@@ -59,18 +51,46 @@ export default {
     handleSubmit(event){
       this.$refs.ruleForm2.validate((valid) => {
         if(valid){
-          this.logining = true;
-          if(this.ruleForm2.username === 'admin' &&
-            this.ruleForm2.password === '123456'){
-            this.logining = false;
-            sessionStorage.setItem('user', this.ruleForm2.username);
-            this.$router.push({path: '/MainPage'});
-          }else{
-            this.logining = false;
-            this.$alert('username or password wrong!', 'info', {
-              confirmButtonText: 'ok'
-            })
-          }
+          // this.logining = true;
+          // if(this.ruleForm2.username === 'admin' &&
+          //   this.ruleForm2.password === '123456'){
+          //   this.logining = false;
+          //   sessionStorage.setItem('user', this.ruleForm2.username);
+          //   this.$router.push({path: '/MainPage'});
+          // }else{
+          //   this.logining = false;
+          //   this.$alert('username or password wrong!', 'info', {
+          //     confirmButtonText: 'ok'
+          //   })
+          // }
+          // this.instance.userLogin({
+          //   username: this.ruleForm2.username,
+          //   password: this.ruleForm2.password
+          // })
+          // .then(
+          //   res => {
+          //     alert(res)
+          //   }
+          // )
+          // .catch(
+          //   error => {
+          //     console.log(error)
+          //   }
+          // )
+          this.$API.p_Login({
+            username: this.ruleForm2.username,
+            password: this.ruleForm2.password
+          })
+           .then(
+             res => {
+              alert(res)
+             }
+           )
+           .catch(
+             error => {
+               console.log(error)
+             }
+           )
         }else{
           console.log('error submit!');
           return false;
