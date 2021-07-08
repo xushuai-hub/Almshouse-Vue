@@ -1,9 +1,10 @@
 <template>
   <div class="camera_outer">
     <el-row>
-      <el-button type="primary" style="width:30%;" @click="getCompetence()">打开摄像头</el-button>
-      <el-button style="width:30%" @click="stopNavigator()">关闭摄像头</el-button>
-      <el-button type="success" style="width:30%;" @click="setImage()">拍照</el-button>
+      <el-button type="primary" style="width:25%;" @click="getCompetence()">打开摄像头</el-button>
+      <el-button style="width:25%" @click="stopNavigator()">关闭摄像头</el-button>
+      <el-button type="success" style="width:25%;" @click="setImage()">拍照</el-button>
+      <el-button style="width:25%" @click="showCamera()">显示实时监控</el-button>
     </el-row>
 
     <video id="videoCamera" :width="800" :height="500" autoplay></video>
@@ -11,6 +12,10 @@
 
     <div v-if="imgSrc" class="img_bg_camera">
       <img :src="imgSrc" alt="" class="tx_img">
+    </div>
+
+    <div v-if="imgSrc" class="img_bg_camera">
+      <img :src="verifyCode" style="float:right;">>
     </div>
 
   </div>
@@ -27,6 +32,7 @@ export default {
       thisCancas: null,
       thisContext: null,
       thisVideo: null,
+      verifyCode: ''
     }
   },
   methods: {
@@ -101,6 +107,27 @@ export default {
 // 关闭摄像头
     stopNavigator () {
       this.thisVideo.srcObject.getTracks()[0].stop()
+    },
+
+    //跟后端连接实时监控
+    showCamera() {
+      this.$API.g_showCamera({
+
+      })
+      .then(
+        res => {
+          const blob = new Blob([res.data], {
+            type: 'application/png;charset=utf-8',
+          });
+          const src = window.URL.createObjectURL(blob);
+          this.verifyCode = src;
+        }
+      )
+      .catch(
+        error => {
+          console.log(error);
+        }
+      )
     }
   },
 }

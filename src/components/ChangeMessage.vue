@@ -1,5 +1,5 @@
 <template>
-  <div class="changemessage">
+  <div class="ChangeMessage">
     <el-form
       :model="resetForm"
       :rules="resetFormRules"
@@ -7,8 +7,20 @@
       status-icon
       label-width="100px"
     >
-      <el-form-item label="旧密码：" prop="password">
-        <el-input type="password" v-model="resetForm.password" auto-complete="off"></el-input>
+      <el-form-item label="登录名称：" prop="name">
+        <el-input type="name" v-model="resetForm.name" auto-complete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="用户名：" prop="username">
+        <el-input type="username" v-model="resetForm.username" auto-complete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="性别：" prop="sex">
+        <el-input type="sex" v-model="resetForm.sex" auto-complete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="邮箱：" prop="email">
+        <el-input type="email" v-model="resetForm.email" auto-complete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="电话：" prop="phone">
+        <el-input type="phone" v-model="resetForm.phone" auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item label="新密码：" prop="newpwd">
         <el-input type="password" v-model="resetForm.newpwd" auto-complete="off"></el-input>
@@ -28,11 +40,8 @@
 
 <script>
 export default {
-  // import api from "@/api";//这是我个人全局定义单独用来接收url接口的文件，不作参考
-  // import { getUsername } from "@/utils/auth";//这是我个人调用封装获取当前账户的username，不作参考
-
   data() {
-    var validatePass = (rule, value, callback) => {
+    let validatePass = (rule, value, callback) => {
       if (!value) {
         callback(new Error("请输入新密码"));
       } else if (value.toString().length < 6 || value.toString().length > 18) {
@@ -41,7 +50,7 @@ export default {
         callback();
       }
     };
-    var validatePass2 = (rule, value, callback) => {
+    let validatePass2 = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入密码"));
       } else if (value !== this.resetForm.newpwd) {
@@ -53,14 +62,15 @@ export default {
     return {
       resetForm: {
         //传给后台所需要的参数
+        name: "",
+        username: "",
+        sex: "",
+        email: "",
+        phone: "",
         newpassword1: "",
         password: "",
-        username: ""//此处只是后台需要的字段而已，如果前期有公用cookie里面有获取并且保存过，现在需要另外调用进来，具体的获取方法就看个人了
       },
       resetFormRules: {
-        password: [
-          { required: true, message: "请输入旧密码", trigger: 'blur' }
-        ],
         newpwd: [
           { required: true, validator: validatePass, trigger: 'blur' }
         ],
@@ -74,35 +84,25 @@ export default {
     toAmend() {
       this.$refs.resetForm.validate(valid => {
         if (valid) {
-          //这里的api.materialQuery.toAmend是调用前期我们统一的api接口url路径，不作参考 ，只要把后台需要的字段正常传进去即可
-          api.materialQuery.toAmend(this.resetForm)
-            .then(res => {
-              if(res.code === 2){
-                this.$message({
-                  message: res.msg,
-                  type: "error",
-                  duration: "2000"
-                });
-                return false;
-              }
-              if (res.code === 0) {
-                this.$message.success("修改成功,3秒后跳转到登录页！");
-                setTimeout(() => {
-                  this.logout();//调用跳转到登陆页的方法
-                }, 3000);
-              }
-              ic
-            })
-            .catch(() => {});
+          this.$API.g_ChangeMessage({
+
+          })
+          .then(
+
+          )
+          .catch({
+
+          })
         }
       });
     },
-    //这是修改成功后重新返回登陆页的方法，看个人需要自行调整
-    async logout() {
-      await this.$store.dispatch("user/logout");
-      this.$router.push(`/login`);
-    }
+
   },
+  mounted(){
+
+  },
+
+
 };
 </script>
 
