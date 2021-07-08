@@ -6,7 +6,8 @@
              label-position="left"
              label-width="0px"
              class="demo-ruleForm login-page">
-      <h3 class="title">系统登录</h3>
+
+      <h3 class="title">用户登录</h3>
       <el-form-item prop="username">
         <el-input type="text"
                   v-model="ruleForm2.username"
@@ -14,6 +15,7 @@
                   placeholder="用户名"
         ></el-input>
       </el-form-item>
+
       <el-form-item prop="password">
         <el-input type="password"
                   v-model="ruleForm2.password"
@@ -21,6 +23,11 @@
                   placeholder="密码"
         ></el-input>
       </el-form-item>
+
+
+
+
+
       <el-checkbox
         v-model="checked"
         class="rememberme"

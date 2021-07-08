@@ -3,7 +3,7 @@
     <el-header class="header">
       <p style="float: left;color: #ffffff">养老院平台</p>
       <div class="header-main">
-        <div><router-link to="/AlmsHouse" style="float: right">退出</router-link></div>
+        <div><router-link to="/" style="float: right">退出</router-link></div>
           <div style="float: right;padding-right: 20px;">人员数据信息统计</div>
         </div>
       </el-header>
@@ -14,7 +14,7 @@
           class="el-menu-vertical"
           router="true"
           style="width:200px">
-          <el-menu-item index="/MainPage/Settings">
+          <el-menu-item index="/MainPage/ChangeMessage">
             <i class="el-icon-document"></i>
             <span slot="title">系统设置模块</span>
           </el-menu-item>

@@ -6,7 +6,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/AlmsHouse',
+      path: '/',
       name: 'AlmsHouse',
       meta: {requiresAuth: false},
       component: () => import("../components/HelloWorld")
@@ -41,7 +41,13 @@ export default new Router({
           meta: {requiresAuth: false},
           component: () => import("../components/Settings")
         },
+        {
+          path: '/MainPage/ChangeMessage',
+          name: 'ChangeMessage',
+          meta: {requiresAuth: false},
+          component: () => import("../components/ChangeMessage")
+        }
       ]
-    }
+    },
   ]
 })
