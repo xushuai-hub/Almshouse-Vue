@@ -18,15 +18,15 @@
             <i class="el-icon-document"></i>
             <span slot="title">系统设置模块</span>
           </el-menu-item>
-          <el-menu-item index="2">
+          <el-menu-item index="/MainPage/ElderlyInfo">
             <i class="el-icon-menu"></i>
             <span slot="title">老年人信息管理</span>
           </el-menu-item>
-          <el-menu-item index="3">
+          <el-menu-item index="/MainPage/StaffInfo">
             <i class="el-icon-document"></i>
             <span slot="title">工作人员信息管理</span>
           </el-menu-item>
-          <el-menu-item index="4">
+          <el-menu-item index="/MainPage/VolunteerInfo">
             <i class="el-icon-setting"></i>
             <span slot="title">义工信息管理</span>
           </el-menu-item>

@@ -8,7 +8,7 @@ import api from './request/api'
 import store from './vuex'
 import 'element-ui/lib/theme-chalk/index.css'
 
-//axios.defaults.baseURL='http://localhost:8090/api'
+//axios.defaults.baseURL='http://172.27.135.66/api'
 Vue.prototype.$API=api;
 Vue.use(ElementUI)
 Vue.config.productionTip = false

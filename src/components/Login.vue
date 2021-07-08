@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data(){
     return {
@@ -63,7 +65,22 @@ export default {
           //     confirmButtonText: 'ok'
           //   })
           // }
-          // this.instance.userLogin({
+          console.log(this.ruleForm2.username + " " + this.ruleForm2.password);
+          axios.post('http://172.27.135.66/api/user/login',{
+            username: this.ruleForm2.username,
+            password: this.ruleForm2.password
+          })
+          .then(
+            response => {
+              alert(response)
+            }
+          )
+          .catch(
+            error => {
+              console.log(error)
+            }
+          )
+          // this.$API.p_Login({
           //   username: this.ruleForm2.username,
           //   password: this.ruleForm2.password
           // })
@@ -77,20 +94,6 @@ export default {
           //     console.log(error)
           //   }
           // )
-          this.$API.p_Login({
-            username: this.ruleForm2.username,
-            password: this.ruleForm2.password
-          })
-           .then(
-             res => {
-              alert(res)
-             }
-           )
-           .catch(
-             error => {
-               console.log(error)
-             }
-           )
         }else{
           console.log('error submit!');
           return false;

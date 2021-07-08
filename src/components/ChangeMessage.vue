@@ -7,7 +7,7 @@
       status-icon
       label-width="100px"
     >
-      <el-form-item label="登录名称：" prop="name">
+      <el-form-item label="你的昵称：" prop="name">
         <el-input type="name" v-model="resetForm.name" auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item label="用户名：" prop="username">
@@ -25,8 +25,8 @@
       <el-form-item label="新密码：" prop="newpwd">
         <el-input type="password" v-model="resetForm.newpwd" auto-complete="off"></el-input>
       </el-form-item>
-      <el-form-item label="确认密码：" prop="newpassword1">
-        <el-input type="password" v-model="resetForm.newpassword1" auto-complete="off"></el-input>
+      <el-form-item label="确认密码：" prop="newpassword">
+        <el-input type="password" v-model="resetForm.newpassword" auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click.native.prevent="toAmend">确认修改</el-button>
@@ -39,6 +39,8 @@
 
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     let validatePass = (rule, value, callback) => {
@@ -67,14 +69,13 @@ export default {
         sex: "",
         email: "",
         phone: "",
-        newpassword1: "",
-        password: "",
+        newpassword: "",
       },
       resetFormRules: {
         newpwd: [
           { required: true, validator: validatePass, trigger: 'blur' }
         ],
-        newpassword1: [
+        newpassword: [
           { required: true, validator: validatePass2, trigger: "blur" }
         ]
       }
@@ -84,22 +85,45 @@ export default {
     toAmend() {
       this.$refs.resetForm.validate(valid => {
         if (valid) {
-          this.$API.g_ChangeMessage({
-
+          axios.post('http://172.27.135.66/api/user/login',{
+            name: this.resetForm.name,
+            username: this.resetForm.username,
+            sex: this.resetForm.sex,
+            email: this.resetForm.email,
+            phone: this.resetForm.phone,
+            newpassword: this.resetForm.newpassword
           })
           .then(
-
+            response => {
+              alert(response)
+            }
           )
-          .catch({
-
-          })
+          .catch(
+            error => {
+              console.log(error)
+            }
+          )
         }
       });
     },
 
   },
   mounted(){
-
+    axios.get('http://172.27.135.66/api/user/changeMessage')
+    .then(
+      response => {
+        this.resetForm.name = response.name;
+        this.resetForm.username = response.username;
+        this.resetForm.sex = response.sex;
+        this.resetForm.email = response.email;
+        this.resetForm.phone = response.phone;
+      }
+    )
+    .catch(
+      error => {
+        console.log(error)
+      }
+    )
   },
 
 

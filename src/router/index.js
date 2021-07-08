@@ -46,7 +46,25 @@ export default new Router({
           name: 'ChangeMessage',
           meta: {requiresAuth: false},
           component: () => import("../components/ChangeMessage")
-        }
+        },
+        {
+          path: '/MainPage/ElderlyInfo',
+          name: 'ElderlyInfo',
+          meta: {requiresAuth: false},
+          component: () => import("../components/ElderlyInfo")
+        },
+        {
+          path: '/MainPage/StaffInfo',
+          name: 'StaffInfo',
+          meta: {requiresAuth: false},
+          component: () => import("../components/StaffInfo")
+        },
+        {
+          path: '/MainPage/VolunteerInfo',
+          name: 'VolunteerInfo',
+          meta: {requiresAuth: false},
+          component: () => import("../components/VolunteerInfo")
+        },
       ]
     },
   ]
